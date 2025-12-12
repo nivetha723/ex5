@@ -1,5 +1,6 @@
 # Ex.05 Design a Website for Server Side Processing
-## Date:
+## Date:12-12-2025
+## Ref No:25013558
 
 ## AIM:
  To design a website to calculate the power of a lamp filament in an incandescent bulb in the server side. 
@@ -32,12 +33,119 @@ Create a HTML file to implement form based input and output.
 Publish the website in the given URL.
 
 ## PROGRAM :
+~~~
+#math.html
+<html>
+<head>
+    <title>Area of Rectangle</title>
+
+    <style>
+        body {
+            background-color: rgb(217, 0, 255);
+            font-size: 20px;
+        }
+
+        .box {
+            width: 500px;
+            height: 300px;
+            background-color: rgb(226, 188, 217);
+            margin: 150px auto;
+            border: 7px dashed rgb(128, 0, 32);
+        }
+
+        h1 {
+            color: rgb(144, 0, 255);
+            text-align: center;
+            padding-top: 20px;
+        }
+
+        .formelt {
+            color: rgb(154, 78, 139);
+            text-align: center;
+            margin-top: 7px;
+            margin-bottom: 6px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="edge">
+    <div class="box">
+        <h1>Area of a Rectangle</h1>
+
+        <form method="POST">
+            {% csrf_token %}
+            
+            <div class="formelt">
+                Length :
+                <input type="text" name="length" value
+            </div>
+
+            <div class="formelt">
+                Breadth :
+                <input type="text" name="breadth" valu
+            </div>
+
+            <div class="formelt">
+                <input type="submit" value="Calculate"
+            </div>
+
+            <div class="formelt">
+                Area :
+                <input type="text" name="area" value="
+            </div>
+        </form>
+
+    </div>
+</div>
+
+</body>
+</html>
+#views.py
+from django.shortcuts import render
+
+def rectanglearea(request):
+    context = {}
+    context['area'] = "0"
+    context['l'] = "0"
+    context['b'] = "0"
+
+    if request.method == 'POST':
+        print("POST method is used")
+        l = request.POST.get('length', '0')
+        b = request.POST.get('breadth', '0')
+
+        print("length=", l)
+        print("breadth=", b)
+
+        area = int(l) * int(b)
+        context['area'] = area
+        context['l'] = l
+        context['b'] = b
+
+        print("Area=", area)
+
+    return render(request, 'mathapp/math.html', context)
+    #urls.py
+    from django.contrib import admin
+from django.urls import path
+from mathapp import views
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('areaofrectangle/', views.rectanglearea, name="areaofrectangle"),
+    path('', views.rectanglearea, name="areaofrectangleroot"),
+]
+~~~
 
 
 ## SERVER SIDE PROCESSING:
+<img width="1912" height="1075" alt="Screenshot 2025-12-12 100028" src="https://github.com/user-attachments/assets/cc8d3c70-2804-48ae-8ead-8015b845d382" />
 
 
 ## HOMEPAGE:
+<img width="1918" height="1079" alt="Screenshot 2025-12-12 100042" src="https://github.com/user-attachments/assets/6842dc36-0e8e-4609-a025-e403fcaae8f7" />
 
 
 ## RESULT:
